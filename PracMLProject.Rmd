@@ -7,7 +7,7 @@ output: html_document
 
 In this project we will be predicting different types of human activity based on the measurements of wearable accelerometers. By using the random forests algorithm, we get highly accurate predictions.
 
-## Load data
+## Data preparation
 The data is downloaded and loaded into a training and testing dataset. 
 
 ```{r cache=TRUE}
@@ -26,7 +26,6 @@ testing <- read.csv('data/pml-testing.csv', na.strings=c("","NA", "#DIV/0!"))
 ```
 
 
-## Data preparation
 A number of features has a large number of missing values. These features are removed from the dataset, as well as certain features that contain information that is not helpful for prediction purposes (such as the name of the subject or the timestamp).
 ```{r}
 # remove varaibles with too many NAs
@@ -59,9 +58,9 @@ modFit0 <- randomForest(classe ~ ., data=trainTrain)
 modFit0
 ```
 
-As the confusion matrix above shows, the out-of-bag (oob) error rate is estimated to be 0.65%, which is very low and a good sign.
+As the confusion matrix above shows, the out-of-bag (oob) error rate is estimated to be 0.65%, which is very low and a good sign. We expect the out of sample error to be close to this error rate, but probably a little higher.
 
-Although the random forest algorithm already does cross-validation in the process (which results in the oob error rate estimate), it cannot hurt, however, to estimate the out of sample error with our own cross-validation:
+Although the random forest algorithm already does cross-validation in the process (which results in the oob error rate estimate), it cannot hurt to estimate the out of sample error with our own cross-validation:
 
 ```{r}
 pred0 <- predict(modFit0, newdata=testTrain)
