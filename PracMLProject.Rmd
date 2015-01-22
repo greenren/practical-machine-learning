@@ -1,0 +1,19 @@
+---
+title: "Practical Machine Learning Project"
+author: "Tim Kok"
+date: "January 22, 2015"
+output: html_document
+---
+
+
+
+```{r}
+summary(cars)
+```
+
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+
